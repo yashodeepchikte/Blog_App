@@ -8,25 +8,34 @@
         <div class= "card mt-4">
             <div class="card-body">
                 <h1 class="card-title"> <%= article.title %> </h1>
-                <div class="card-subtitle mb-2 text-muted" > 
+                <div class="card-subtitle mb-2 text-muted" >
                     <%= article.createdAt.toLocaleDateString() %>
                 </div>
-                <div class="card-text mb-2">    
-                   <h3><%= article.description %></h3> 
+                <div class="card-text mb-2">
+
+                <% if ( article.description.length >=100 ) { %>
+                  <h3> <%= article.description.slice(0,50) + "..." %> </h3>
+                <% }else{ %>
+                  <h3> <%= article.description %> </h3>
+                <% } %>
+
+
+
+
                 </div>
             </div>
-        
+
             <form action="articles/delete" method="post">
                 <a href="/articles/<%= article._id %>" class="btn btn-primary mb-4 ml-1">Read More</a>
                 <button class="btn btn-danger mb-4 ml-1" name = "id" value = <%= article._id %>> delete</button>
                 <a href="/articles/edit/<%= article._id %>" class="btn btn-info mb-4 ml-1"> Edit</a>
-                
+
             </form>
 
         </div>
 
 
-        
+
 
    <% }) %>
 

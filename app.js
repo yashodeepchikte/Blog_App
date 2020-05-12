@@ -17,7 +17,7 @@ const app = express();
 
 
 // Middleware
-app.use(express.urlencoded({rxtended:true}))
+app.use(express.urlencoded({extended:true}))
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
 app.use("/" , require("./routes/index.js"));
@@ -28,6 +28,6 @@ app.use("/articles", require("./routes/articles.js"));
 
 
 // App listen
-app.listen(port, ()=> { 
+app.listen(port, ()=> {
     console.log(`App is running on ${port}` );
 })

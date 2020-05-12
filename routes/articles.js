@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
     const id = req.params.id;
     Articles.findById(id, (err, result) => {
         if (result == null){res.redirect("/")}
-        res.render("articles/show", {article:result})   
+        res.render("articles/show", {article:result})
     })
 })
 
@@ -33,21 +33,21 @@ router.post("/", async (req, res) => {
         await article.save();
         // console.log("articel", article);
         res.redirect(`articles/${article._id}`)
-        
+
 
     }catch(err){
         // console.log(article);
         res.render("articles/new", {article:article});
     }
-    
 
-    
+
+
 });
 
 
 router.post("/delete", async (req, res) => {
    const id = req.body.id;
-   
+
    Articles.findOneAndDelete({_id:id}, (err)=>{
     //    Articles.save();
        res.redirect("/")
@@ -72,6 +72,7 @@ router.post("/edit", async (req, res) => {
     article.title=req.body.title;
     article.description = req.body.description;
     article.markdown = req.body.markdown;
+    // article.createdAt = Date.now();
     article.save();
     res.redirect("/")
 })
