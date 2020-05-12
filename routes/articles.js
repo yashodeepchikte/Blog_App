@@ -1,18 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 const Articles = require("../models/articles.model");
-
-
 
 
 router.get("/", (req, res) => {
     res.redirect("/")
 })
 
+// creating a new article
 router.get("/new", (req, res) => {
     res.render("articles/new", {article:new Articles()});
 })
+
 
 router.get("/:slug", (req, res) => {
     const slug = req.params.slug;
@@ -24,36 +26,35 @@ router.get("/:slug", (req, res) => {
     })
 })
 
-router.post("/", async (req, res) => {
+
+router.post("/neww", async (req, res) => {
+    console.log('got to the new route')
+    // console.log("request=", req.body)
     let article = new Articles({
         title:req.body.title,
         description:req.body.description,
         markdown:req.body.markdown
     })
-    // console.log("req was", req.body);
-
     try{
         await article.save();
-
         // console.log("articel", article);
-        res.redirect(`articles/${article.slug}`)
-
-
+        res.redirect(`${article.slug}`)
     }catch(err){
-        // console.log(article);
-        res.render("articles/new", {article:article});
+        console.log(err);
+        res.render("/new", {article:article});
     }
-
-
-
 });
 
 
+
+    // console.log("req was", req.body);
+
+
+
+//  Deleting an element
 router.get("/delete/:slug", async (req, res) => {
    const slug = req.params.slug;
    console.log(slug, "Deleted")
-
-
    Articles.findOneAndDelete({slug:slug}, (err)=>{
     //    Articles.save();
        res.redirect("/")
@@ -62,7 +63,7 @@ router.get("/delete/:slug", async (req, res) => {
 })
 
 
-
+// Editing an element
 router.get("/edit/:slug", (req, res) => {
     const slug = req.params.slug;
     // console.log("slug:", slug)
@@ -83,6 +84,27 @@ router.post("/edit", async (req, res) => {
     await article.save();
     res.redirect("/")
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;

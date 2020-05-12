@@ -7,6 +7,6 @@
         <a href="/articles/edit/<%= article.slug %>" class="btn btn-info"> Edit</a>
         <hr />
         <div> <h5><%=  article.description %></h5> </div>
-        <div> <%= article.markdown %></div>
+        <div>  <%- article.sanatizedHTML %></div>
     </div>
 <%- include("../partials/_footer") -%>
