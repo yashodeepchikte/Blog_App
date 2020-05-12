@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start" : "node app.js",
-    "dev" : "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,8 @@
   "dependencies": {
     "ejs": "^3.1.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.13"
+    "marked": "^1.0.0",
+    "mongoose": "^5.9.13",
+    "slugify": "^1.4.0"
   }
 }

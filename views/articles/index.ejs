@@ -26,9 +26,9 @@
             </div>
 
             <form action="articles/delete" method="post">
-                <a href="/articles/<%= article._id %>" class="btn btn-primary mb-4 ml-1">Read More</a>
-                <button class="btn btn-danger mb-4 ml-1" name = "id" value = <%= article._id %>> delete</button>
-                <a href="/articles/edit/<%= article._id %>" class="btn btn-info mb-4 ml-1"> Edit</a>
+                <a href="/articles/<%= article.slug %>" class="btn btn-primary mb-4 ml-1">Read More</a>
+                <a href="/articles/delete/<%= article.slug%>" class="btn btn-danger mb-4 ml-1">Delete </a>
+                <a href="/articles/edit/<%= article.slug %>" class="btn btn-info mb-4 ml-1"> Edit</a>
 
             </form>
 

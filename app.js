@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 
 
 // connectiong the DATABASE
-mongoose.connect("mongodb://localhost/blog" , {useUnifiedTopology: true, useNewUrlParser: true})
+mongoURI = "mongodb+srv://user:1234@cluster0-qndpg.gcp.mongodb.net/test?retryWrites=true&w=majority"
+mongoose.connect(mongoURI , {useUnifiedTopology: true, useNewUrlParser: true})
     .then(message => console.log("mongo DB connected"));
 
 

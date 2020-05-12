@@ -14,10 +14,12 @@ router.get("/new", (req, res) => {
     res.render("articles/new", {article:new Articles()});
 })
 
-router.get("/:id", (req, res) => {
-    const id = req.params.id;
-    Articles.findById(id, (err, result) => {
+router.get("/:slug", (req, res) => {
+    const slug = req.params.slug;
+    // console.log("sslug: " , slug)
+    Articles.findOne({slug:slug}, (err, result) => {
         if (result == null){res.redirect("/")}
+        // console.log("result --> " , result)
         res.render("articles/show", {article:result})
     })
 })
@@ -28,11 +30,13 @@ router.post("/", async (req, res) => {
         description:req.body.description,
         markdown:req.body.markdown
     })
+    // console.log("req was", req.body);
 
     try{
         await article.save();
+
         // console.log("articel", article);
-        res.redirect(`articles/${article._id}`)
+        res.redirect(`articles/${article.slug}`)
 
 
     }catch(err){
@@ -45,10 +49,12 @@ router.post("/", async (req, res) => {
 });
 
 
-router.post("/delete", async (req, res) => {
-   const id = req.body.id;
+router.get("/delete/:slug", async (req, res) => {
+   const slug = req.params.slug;
+   console.log(slug, "Deleted")
 
-   Articles.findOneAndDelete({_id:id}, (err)=>{
+
+   Articles.findOneAndDelete({slug:slug}, (err)=>{
     //    Articles.save();
        res.redirect("/")
    })
@@ -57,9 +63,10 @@ router.post("/delete", async (req, res) => {
 
 
 
-router.get("/edit/:id", (req, res) => {
-    const id = req.params.id;
-    Articles.findById(id, (e, result) =>
+router.get("/edit/:slug", (req, res) => {
+    const slug = req.params.slug;
+    // console.log("slug:", slug)
+    Articles.findOne({slug:slug}, (e, result) =>
     {
         res.render("articles/edit", {article:result})
     })
@@ -73,7 +80,7 @@ router.post("/edit", async (req, res) => {
     article.description = req.body.description;
     article.markdown = req.body.markdown;
     // article.createdAt = Date.now();
-    article.save();
+    await article.save();
     res.redirect("/")
 })
 

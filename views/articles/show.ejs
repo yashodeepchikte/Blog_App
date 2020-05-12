@@ -1,11 +1,12 @@
 <%- include("../partials/_header") -%>
     <div class="container">
-        <div class="mb-1"> <h1><%= article.title %></h1></div>
-        <div class="text-muted mb-2"> <%= article.createdAt.toLocaleDateString() %> </div>
+
+        <div class=""> <h1><%= article.title %></h1></div>
+        <div class="text-muted mb-"> <%= article.createdAt.toLocaleDateString() %> </div>
         <a href="/" class="btn btn-secondary">All Articles</a>
-        <a href="/articles/edit/<%= article._id %>" class="btn btn-info"> Edit</a>
+        <a href="/articles/edit/<%= article.slug %>" class="btn btn-info"> Edit</a>
         <hr />
-        <div> <%= article.description %></div>
+        <div> <h5><%=  article.description %></h5> </div>
         <div> <%= article.markdown %></div>
     </div>
 <%- include("../partials/_footer") -%>
