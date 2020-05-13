@@ -1,0 +1,2 @@
+slugify - used to change _id to url frendly slug 
+marjed used for creating html from the markdown text given by user

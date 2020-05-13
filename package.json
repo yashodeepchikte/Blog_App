@@ -18,5 +18,8 @@
     "marked": "^1.0.0",
     "mongoose": "^5.9.13",
     "slugify": "^1.4.0"
+  },
+  "engines": {
+    "node": "12.16.2"
   }
 }
