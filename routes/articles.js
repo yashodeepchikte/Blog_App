@@ -97,8 +97,7 @@ router.get("/delete/:slug", async (req, res) => {
   // console.log(slug, "Deleted")
   Articles.findOneAndDelete({
     slug: slug
-  }, (err) => {
-    //    Articles.save();
+  }, (err) => {    //    Articles.save();
     res.redirect("/")
   })
 
